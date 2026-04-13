@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VYBZ — Set The Vybz</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ============================================================
+       RESET & ROOT VARIABLES
+    ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black:   #0a0a0a;
+      --white:   #f0ede6;
+      --accent:  #d4f06e;        /* lime green — brand accent */
+      --muted:   rgba(240, 237, 230, 0.55);
+      --border:  rgba(240, 237, 230, 0.08);
+      --gray:    #111111;
+    }
+
+    /* ============================================================
+       BASE
+    ============================================================ */
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 0.55rem 1.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2.5rem 4rem;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6.5rem;
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      display: block;
+      font-style: italic;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 3rem;
+      color: rgba(240, 237, 230, 0.4);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      margin-top: 0.3rem;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 340px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Shared button base */
+    .btn-primary,
+    .btn-ghost {
+      padding: 0.85rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 0.5px solid rgba(240, 237, 230, 0.2);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ---- Hero image grid ---- */
+    .hero-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .card-img {
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .card-img:hover { transform: scale(0.97); }
+    .card-img:first-child  { margin-top:  2rem; }
+    .card-img:last-child   { margin-top: -2rem; }
+
+    .card-img-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
+    .card-img-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 230, 0.7);
+    }
+
+    /* Image placeholder backgrounds — swap for real <img> tags */
+    .img-night  { background: linear-gradient(145deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%); }
+    .img-gold   { background: linear-gradient(145deg, #2d1b00 0%, #5c3a00 60%, #d4a017 100%); }
+    .img-forest { background: linear-gradient(145deg, #1a2e1a 0%, #2d5a2d 60%, #5a8a5a 100%); }
+    .img-red    { background: linear-gradient(145deg, #2e1a1a 0%, #5a1a1a 60%, #8a1a1a 100%); }
+
+    /* ============================================================
+       TICKER / MARQUEE BAR
+    ============================================================ */
+    .ticker {
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0.9rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      animation: ticker 22s linear infinite;
+    }
+
+    .ticker-inner span {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 230, 0.3);
+      margin: 0 2.5rem;
+    }
+    .ticker-inner span.accent { color: var(--accent); }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       SHARED SECTION LAYOUT
+    ============================================================ */
+    .section {
+      padding: 5rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(240, 237, 230, 0.3);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 3rem;
+    }
+
+    /* ============================================================
+       PRODUCTS / SHOP SECTION
+    ============================================================ */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .product-card {
+      background: var(--gray);
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .product-card:hover {
+      border-color: rgba(212, 240, 110, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .product-thumb {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      letter-spacing: 0.1em;
+    }
+    /* Placeholder thumb colours — swap for real product images */
+    .pt-acid     { background: #1c1c1c; color: var(--accent); }
+    .pt-midnight { background: #1a1a2a; color: #a090ff; }
+    .pt-forest   { background: #1a2a1a; color: #90d4a0; }
+
+    .product-info {
+      padding: 1rem 1rem 1.2rem;
+    }
+    .product-name {
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .product-price {
+      font-size: 13px;
+      color: rgba(240, 237, 230, 0.4);
+    }
+    .product-price strong {
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+    ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 39px,
+        rgba(212, 240, 110, 0.03) 39px,
+        rgba(212, 240, 110, 0.03) 40px
+      );
+    }
+
+    .about-logo-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7rem;
+      letter-spacing: 0.1em;
+      color: rgba(240, 237, 230, 0.06);
+    }
+
+    .about-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    /* Stats row */
+    .about-stat {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: rgba(240, 237, 230, 0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* ============================================================
+       NOTIFY / EMAIL SECTION
+    ============================================================ */
+    .notify-section {
+      background: var(--gray);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 5rem 2.5rem;
+      text-align: center;
+    }
+
+    .notify-section .section-title { margin-bottom: 0.8rem; }
+
+    .notify-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .notify-form {
+      display: flex;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .notify-input {
+      flex: 1;
+      background: var(--black);
+      border: 0.5px solid rgba(240, 237, 230, 0.15);
+      border-right: none;
+      padding: 0.85rem 1.2rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      border-radius: 2px 0 0 2px;
+      transition: border-color 0.2s;
+    }
+    .notify-input::placeholder { color: rgba(240, 237, 230, 0.25); }
+    .notify-input:focus { border-color: rgba(212, 240, 110, 0.4); }
+
+    .notify-btn {
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 0.85rem 1.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0 2px 2px 0;
+      transition: opacity 0.2s;
+    }
+    .notify-btn:hover { opacity: 0.85; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 3rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      color: rgba(240, 237, 230, 0.25);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(240, 237, 230, 0.25);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(240, 237, 230, 0.2);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================================
+       MOBILE RESPONSIVE  (max-width: 768px)
+    ============================================================ */
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem 3rem;
+        gap: 3rem;
+      }
+      .hero h1 { font-size: 4.5rem; }
+
+      .section { padding: 3.5rem 1.5rem; }
+
+      .products-grid { grid-template-columns: 1fr; gap: 12px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-stat { gap: 2rem; }
+
+      .notify-form { flex-direction: column; }
+      .notify-input {
+        border-right: 0.5px solid rgba(240, 237, 230, 0.15);
+        border-bottom: none;
+        border-radius: 2px 2px 0 0;
+      }
+      .notify-btn { border-radius: 0 0 2px 2px; }
+
+      footer {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav>
+    <a href="#" class="logo">VYB<span>Z</span></a>
+
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="nav-cta" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      Shop Now
+    </button>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero">
+
+    <!-- Left: text -->
+    <div>
+      <p class="hero-tag">New Drop — SS26</p>
+
+      <h1>
+        SET THE<br>VYBZ
+        <em>on your terms</em>
+      </h1>
+
+      <p class="hero-desc">
+        براند بيتكلم بصوتك. ملابس مش بس حاجة تلبسها — دي طريقتك تقول مين انت.
+      </p>
+
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+          Explore Drop
+        </button>
+        <button class="btn-ghost" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+          Our Story
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: image grid -->
+    <!-- TIP: replace <div class="card-img img-*"> with <img src="..." /> inside .card-img -->
+    <div class="hero-visual">
+      <div class="card-img img-night">
+        <div class="card-img-inner">
+          <span class="card-img-label">Night Edition</span>
+        </div>
+      </div>
+      <div class="card-img img-gold">
+        <div class="card-img-inner">
+          <span class="card-img-label">Gold Rush</span>
+        </div>
+      </div>
+      <div class="card-img img-forest">
+        <div class="card-img-inner">
+          <span class="card-img-label">Forest Rave</span>
+        </div>
+      </div>
+      <div class="card-img img-red">
+        <div class="card-img-inner">
+          <span class="card-img-label">Red Zone</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       TICKER / MARQUEE
+  ============================================================ -->
+  <div class="ticker">
+    <!-- Content is duplicated so the loop is seamless -->
+    <div class="ticker-inner">
+      <span class="accent">VYBZ</span>
+      <span>Free Shipping Over 500 EGP</span>
+      <span class="accent">●</span>
+      <span>New Drop Every Month</span>
+      <span class="accent">●</span>
+      <span>Limited Pieces</span>
+      <span class="accent">●</span>
+
+      <span class="accent">VYBZ</span>
+      <span>Free Shipping Over 500 EGP</span>
+      <span class="accent">●</span>
+      <span>New Drop Every Month</span>
+      <span class="accent">●</span>
+      <span>Limited Pieces</span>
+      <span class="accent">●</span>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       SHOP / PRODUCTS
+  ============================================================ -->
+  <section class="section" id="shop">
+    <p class="section-label">Latest Drop</p>
+    <h2 class="section-title">COLLECTION</h2>
+
+    <div class="products-grid">
+
+      <!-- Product 1 -->
+      <!-- TIP: swap .product-thumb for <img src="..." alt="..."> -->
+      <div class="product-card">
+        <div class="product-thumb pt-acid">VZ</div>
+        <div class="product-info">
+          <p class="product-name">Oversized Tee — Acid</p>
+          <p class="product-price"><strong>459 EGP</strong></p>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <div class="product-thumb pt-midnight">VZ</div>
+        <div class="product-info">
+          <p class="product-name">Cargo Jogger — Midnight</p>
+          <p class="product-price"><strong>899 EGP</strong></p>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <div class="product-thumb pt-forest">VZ</div>
+        <div class="product-info">
+          <p class="product-name">Logo Hoodie — Forest</p>
+          <p class="product-price"><strong>699 EGP</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section class="section" id="about">
+    <div class="about-grid">
+
+      <!-- Visual placeholder -->
+      <div class="about-visual">
+        <div class="about-logo-big">VYBZ</div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-text">
+        <p class="section-label">About The Brand</p>
+        <h2 class="section-title">WHO<br>WE ARE</h2>
+
+        <p>
+          VYBZ ولدت من الشارع. مش من استوديو تصميم أو بورد روم —
+          من ناس عارفة عايزة إيه وعارفة مين هي.
+        </p>
+        <p>
+          كل قطعة عندنا بتتعمل بفكر، ومحدودة العدد.
+          مش عشان نعمل هايب — عشان كل حاجة تكون فعلاً تستاهل.
+        </p>
+
+        <!-- Stats -->
+        <div class="about-stat">
+          <div>
+            <div class="stat-num">14K+</div>
+            <div class="stat-label">Community</div>
+          </div>
+          <div>
+            <div class="stat-num">38</div>
+            <div class="stat-label">Drops Released</div>
+          </div>
+          <div>
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Local Made</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EMAIL NOTIFY
+  ============================================================ -->
+  <div class="notify-section" id="contact">
+    <p class="section-label">First Drop</p>
+    <h2 class="section-title">BE FIRST TO KNOW</h2>
+    <p class="notify-sub">سجل إيميلك وكون أول واحد يعرف لما الدروب ينزل.</p>
+
+    <div class="notify-form">
+      <input
+        type="email"
+        class="notify-input"
+        id="emailInput"
+        placeholder="your@email.com"
+      />
+      <button class="notify-btn" id="notifyBtn">Notify Me</button>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-logo">VYBZ</div>
+
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-copy">© 2026 VYBZ. All rights reserved.</div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---- Email notify button ---- */
+    document.getElementById('notifyBtn').addEventListener('click', function () {
+      const input = document.getElementById('emailInput');
+      const isValid = input.value && input.value.includes('@');
+
+      if (isValid) {
+        input.value = '';
+        input.placeholder = "You're on the list!";
+        this.textContent = 'Done ✓';
+        this.style.background = '#90d4a0';
+
+        setTimeout(() => {
+          this.textContent = 'Notify Me';
+          this.style.background = '';
+          input.placeholder = 'your@email.com';
+        }, 3000);
+      } else {
+        input.style.borderColor = 'rgba(255, 100, 100, 0.5)';
+        setTimeout(() => { input.style.borderColor = ''; }, 1500);
+      }
+    });
+  </script>
+
+</body>
+</html>
